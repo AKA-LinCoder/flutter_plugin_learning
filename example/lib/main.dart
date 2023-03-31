@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:plugin_test/plugin_test.dart';
+import 'package:plugin_test/util/util_method_channel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _pluginTestPlugin = PluginTest();
+  final _utilPlugin = util_method_channel();
+  String answer = "";
 
   @override
   void initState() {
@@ -31,8 +34,10 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
+      SystemChannels.platform.invokeMethod('setLogLevel', {'level': 'VERBOSE'});
       platformVersion =
           await _pluginTestPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      answer = await _utilPlugin.fuckYou()??"error";
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -55,7 +60,12 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              Text('Running on: $_platformVersion\n'),
+              Text('来自输出$answer'),
+            ],
+          ),
         ),
       ),
     );

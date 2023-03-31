@@ -14,7 +14,10 @@ class MethodChannelPluginTest extends PluginTestPlatform {
       }
     }
     return Future.value(true);
-  });
+  }
+
+
+  );
 
   ///获取原生平台中对应的版本信息
   @override
