@@ -3,13 +3,20 @@ PODS:
   - AMapLocation (2.9.0):
     - AMapFoundation (>= 1.7.0)
   - Flutter (1.0.0)
+  - permission_handler_apple (9.0.4):
+    - Flutter
   - plugin_test (0.0.1):
     - AMapLocation
     - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - plugin_test (from `.symlinks/plugins/plugin_test/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
 
 SPEC REPOS:
   trunk:
@@ -19,15 +26,21 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
   plugin_test:
     :path: ".symlinks/plugins/plugin_test/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
 
 SPEC CHECKSUMS:
   AMapFoundation: f48153f724114b58da9b01875ab88a1f6856e3db
   AMapLocation: f5eb11e11c62f0f599f80b578eec8a1f70deb985
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   plugin_test: be626ee24c90d64161d939131b1707cd72e96a53
+  shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
 
-PODFILE CHECKSUM: 21b64fbb12492d731c9be90cbe0f2d328bef4b49
+PODFILE CHECKSUM: 46da880cc109d2752dc1d7ca93ea44b0cdef1b6e
 
 COCOAPODS: 1.11.3

@@ -32,6 +32,8 @@ s.static_framework = true
 在example里面的yaml文件里添加version x.x.x
 
 ```
+- 修改了对应plugin里的代码，不能使用热重启，只能重新运行项目
+- 
 
 
 ## Getting Started
