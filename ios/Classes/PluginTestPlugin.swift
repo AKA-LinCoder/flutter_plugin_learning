@@ -8,7 +8,7 @@ public class PluginTestPlugin: NSObject, FlutterPlugin {
       //注册初始化
       utilPlugin.register(with: registrar)
 
-
+      registrar.register(EchoMapFactory(registrar: registrar), withId: "mapView")
 
     channel = FlutterMethodChannel(name: "plugin_test", binaryMessenger: registrar.messenger())
     let instance = PluginTestPlugin()

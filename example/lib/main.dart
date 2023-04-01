@@ -90,8 +90,9 @@ class _MyAppState extends State<MyApp> {
                   initPlatformState();
                 });
               }, child: const Text("请求权限")),
-              if(defaultTargetPlatform == TargetPlatform.android)
-                const Expanded(child: AndroidView(viewType: "mapView"))
+                defaultTargetPlatform == TargetPlatform.android?
+                const Expanded(child: AndroidView(viewType: "mapView")):
+                const SizedBox(height:200,child: UiKitView(viewType: "mapView"))
             ],
           ),
         ),

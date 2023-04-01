@@ -44,6 +44,8 @@ api 与implementation 的作用相似，它也表示这个依赖是必须的，�
 ```
 - 安卓端添加了新的依赖后，需要点击提示或者点击菜单栏的“Sync Now”按钮
 - navi导航SDK 5.0.0以后版本包含了3D地图SDK，所以请不要同时引入 map3d 和 navi SDK
+- 由于FlutterPlugin是OC写的，所以在Swift中实现OC协议，前面需要加上NSObject
+- 写iOS端的代码时，有时可能一个文件在其他文件夹中无法找到，不要怕，先运行试试，我试了版本他一直保存，但是最好直接运行的时候发现是正常的，浪费了半天时间
 - 一次会话通道只能回复一次，不能回复多次，否则抛异常：java.lang.IllegalStateException: Reply already submitted
 
 
