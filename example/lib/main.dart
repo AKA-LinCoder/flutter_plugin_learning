@@ -89,7 +89,9 @@ class _MyAppState extends State<MyApp> {
                   getPermission();
                   initPlatformState();
                 });
-              }, child: const Text("请求权限"))
+              }, child: const Text("请求权限")),
+              if(defaultTargetPlatform == TargetPlatform.android)
+                const Expanded(child: AndroidView(viewType: "mapView"))
             ],
           ),
         ),

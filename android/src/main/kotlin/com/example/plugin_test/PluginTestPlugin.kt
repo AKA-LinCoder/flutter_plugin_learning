@@ -2,6 +2,7 @@ package com.example.plugin_test
 
 import android.util.Log
 import androidx.annotation.NonNull
+import com.example.plugin_test.map.EchoMapFactory
 import com.example.plugin_test.util.utilPlugin
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -30,6 +31,8 @@ class PluginTestPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
 
     val  util_channel =  MethodChannel(flutterPluginBinding.binaryMessenger,"util")
     util_channel.setMethodCallHandler(utilPlugin())
+
+    flutterPluginBinding.platformViewRegistry.registerViewFactory("mapView",EchoMapFactory())
 
 
   }
