@@ -7,4 +7,5 @@ sealed class PluginMethod {
     object fuckYou:PluginMethod()
 
     object unKown:PluginMethod()
+    object calculateLineDistanceByAmap:PluginMethod()
 }

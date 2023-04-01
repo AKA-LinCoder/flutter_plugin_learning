@@ -43,4 +43,27 @@ android {
     defaultConfig {
         minSdkVersion 16
     }
+//    configurations {
+//        all {
+//            exclude group: 'com.amap.api:location', module: 'DistrictItem'
+//        }
+//    }
+}
+
+dependencies {
+
+    //3D地图so及jar
+//    api 'com.amap.api:3dmap:latest.integration'{
+//        exclude group: 'com.amap.api.fence', module: 'DistrictItem'
+//    }
+    //定位功能
+//    api 'com.amap.api:location:latest.integration'
+    //搜索功能
+    api 'com.amap.api:search:latest.integration'
+    //导航
+//    api 'com.amap.api:navi-3dmap:latest.integration'
+    api ('com.amap.api:navi-3dmap:latest.integration')
+//    api 'com.amap.api:navi-3dmap:latest.integration'{
+//        exclude group(com.amap.api.fence),module(DistrictItem)
+//    }
 }

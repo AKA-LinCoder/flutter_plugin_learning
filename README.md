@@ -34,6 +34,16 @@ s.static_framework = true
 
 ```
 - 修改了对应plugin里的代码，不能使用热重启，只能重新运行项目
+- compile implementation api的区别
+```
+compile 是最早期的依赖声明方式，它表示这个依赖是必须的，并且会被传递到当前module的所有依赖中
+在Gradle 3.4及以上的版本中，compile 已经被弃用，推荐使用implementation或者api
+implementation 是推荐的依赖声明方式，它表示这个依赖是必须的，但是不会被传递到当前module的依赖中，只会被当前module使用
+api 与implementation 的作用相似，它也表示这个依赖是必须的，并且会被传递到当前module的依赖中。但是api声明的依赖会公开给其他模块使用
+
+```
+- 安卓端添加了新的依赖后，需要点击提示或者点击菜单栏的“Sync Now”按钮
+- navi导航SDK 5.0.0以后版本包含了3D地图SDK，所以请不要同时引入 map3d 和 navi SDK
 - 一次会话通道只能回复一次，不能回复多次，否则抛异常：java.lang.IllegalStateException: Reply already submitted
 
 

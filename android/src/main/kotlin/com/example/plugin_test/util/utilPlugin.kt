@@ -2,6 +2,8 @@ package com.example.plugin_test.util
 
 import android.location.Location
 import androidx.annotation.NonNull
+import com.amap.api.maps.AMapUtils
+import com.amap.api.maps.model.LatLng
 import com.example.plugin_test.extension.toPluginMethod
 import com.example.plugin_test.model.LngAndLat
 import com.example.plugin_test.model.PluginMethod
@@ -34,6 +36,13 @@ class utilPlugin:FlutterPlugin, MethodChannel.MethodCallHandler {
                 result.success("fuck you")
             }
 
+            is PluginMethod.calculateLineDistanceByAmap ->{
+                val  argument = call.arguments as List<Double>
+                val lngAndLat1 = LngAndLat(latitude = argument[1], longitude = argument[0])
+                val lngAndLat2 = LngAndLat(latitude = argument[3], longitude = argument[2])
+                calculateLineDistanceByAmap( lngAndLat1 = lngAndLat1, lngAndLat2 = lngAndLat2, result = result)
+            }
+
             is PluginMethod.unKown ->{
                 result.success("fuck me")
             }
@@ -48,5 +57,11 @@ class utilPlugin:FlutterPlugin, MethodChannel.MethodCallHandler {
         location2.latitude = lngAndLat2.latitude
         location2.longitude = lngAndLat2.longitude
         result.success(location1.distanceTo(location2).toString())
+    }
+
+    fun calculateLineDistanceByAmap(lngAndLat1:LngAndLat,lngAndLat2:LngAndLat,@NonNull result: Result){
+        val startLatLng = LatLng(lngAndLat1.latitude,lngAndLat1.longitude)
+        val endLatLng = LatLng(lngAndLat2.latitude,lngAndLat2.longitude)
+        result.success(AMapUtils.calculateLineDistance(startLatLng,endLatLng).toString())
     }
 }
