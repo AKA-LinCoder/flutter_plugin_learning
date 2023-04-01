@@ -28,12 +28,13 @@ s.static_framework = true
 ```
 - 新的method叫什么无所谓，但是都得在最开始的那个Plugin的register里面注册
 - 解决 Action Required: You must set a build name and number in the pubspec.yaml file version field before submitting to the App Store.
+- 高德地图采用的GCJ02坐标系，iOS和安卓原生获取经纬度距离采用的是WGS84坐标系
 ```
 在example里面的yaml文件里添加version x.x.x
 
 ```
 - 修改了对应plugin里的代码，不能使用热重启，只能重新运行项目
-- 
+- 一次会话通道只能回复一次，不能回复多次，否则抛异常：java.lang.IllegalStateException: Reply already submitted
 
 
 ## Getting Started

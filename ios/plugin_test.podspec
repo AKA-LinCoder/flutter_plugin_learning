@@ -16,6 +16,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'AMapLocation'
+  s.dependency 'AMap3DMap'
+  s.dependency 'AMapSearch'
 
 #解决'Pods-Runner' target has transitive dependencies that include statically linked binaries: (/Users/estim/Desktop/Lin/my_flutter/plugin_test/example/ios/Pods/AMapLocation/AMapLocationKit.framework)
   s.static_framework = true

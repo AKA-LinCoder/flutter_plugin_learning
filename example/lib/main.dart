@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   final _utilPlugin = util_method_channel();
   String answer = "";
   String distance = "";
+  String distance2 = "";
   late double centerPointLatitude; // 中心点 维度
 
   late double centerPointLongitude; // 中心点 经度
@@ -52,6 +53,8 @@ class _MyAppState extends State<MyApp> {
           await _pluginTestPlugin.getPlatformVersion() ?? 'Unknown platform version';
       answer = await _utilPlugin.fuckYou()??"error";
       distance = await _utilPlugin.calculateLineDistance(103.822956,30.066668,104.190556,30.812500)??"error";
+
+      distance2 = await _utilPlugin.calculateLineDistanceByAmap(103.822956,30.066668,104.190556,30.812500)??"error";
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -78,7 +81,8 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('Running on: $_platformVersion\n'),
               Text('来自输出$answer'),
-              Text("$distance"),
+              Text("原生计算距离:$distance"),
+              Text("高德计算距离:$distance2"),
               ElevatedButton(onPressed: ()async{
                 await Permission.location.request();
                 setState(() {

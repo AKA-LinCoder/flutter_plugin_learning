@@ -2,6 +2,7 @@ package com.example.plugin_test
 
 import android.util.Log
 import androidx.annotation.NonNull
+import com.example.plugin_test.util.utilPlugin
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -26,6 +27,11 @@ class PluginTestPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "plugin_test")
     channel.setMethodCallHandler(this)
+
+    val  util_channel =  MethodChannel(flutterPluginBinding.binaryMessenger,"util")
+    util_channel.setMethodCallHandler(utilPlugin())
+
+
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -35,7 +41,9 @@ class PluginTestPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
       var map = mapOf("message" to 1.8)
       channel.invokeMethod("toFlutter",map)
 
-    } else {
+    } else if(call.method == ""){
+      result.success("calculateLineDistance")
+    }else {
       result.notImplemented()
     }
   }

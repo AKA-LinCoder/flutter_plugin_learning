@@ -5,12 +5,10 @@ var channel:FlutterMethodChannel?
 public class PluginTestPlugin: NSObject, FlutterPlugin {
      
   public static func register(with registrar: FlutterPluginRegistrar) {
-      
+      //注册初始化
       utilPlugin.register(with: registrar)
 
 
-      //注册初始化
-//       util.register(with: registrar)
 
     channel = FlutterMethodChannel(name: "plugin_test", binaryMessenger: registrar.messenger())
     let instance = PluginTestPlugin()
