@@ -2,6 +2,7 @@ package com.example.plugin_test.util
 
 import android.location.Location
 import androidx.annotation.NonNull
+import com.example.plugin_test.model.LngAndLat
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -20,23 +21,30 @@ class utilPlugin:FlutterPlugin, MethodChannel.MethodCallHandler {
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
-        if(call.method == "calculateLineDistance"){
-            val  argument = call.arguments as List<Double>
-            calculateLineDistance(lat1 = argument[1], lng1 = argument[0], lat2 = argument[3], lng2 = argument[2],result)
-        }else if(call.method == "fuckYou"){
-            result.success("fuck you")
-        }else{
-            result.success("fuck me")
+        when (call.method) {
+            "calculateLineDistance"->{
+                val  argument = call.arguments as List<Double>
+                calculateLineDistance( lngAndLat1 = LngAndLat(latitude = argument[1], longitude = argument[0]),
+                   lngAndLat2 = LngAndLat(latitude = argument[3], longitude = argument[2]), result = result)
+            }
+            "fuckYou"->{
+                result.success("fuck you")
+            }
+            else ->{
+                result.success("fuck me")
+            }
         }
     }
 
-    fun calculateLineDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double,@NonNull result: Result){
+    fun calculateLineDistance(lngAndLat1:LngAndLat,lngAndLat2:LngAndLat,@NonNull result: Result){
+
+//    fun calculateLineDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double,@NonNull result: Result){
         val location1 = Location("")
-        location1.latitude = lat1
-        location1.longitude = lng1
+        location1.latitude = lngAndLat1.latitude
+        location1.longitude = lngAndLat1.longitude
         val location2 = Location("")
-        location2.latitude = lat2
-        location2.longitude = lng2
+        location2.latitude = lngAndLat2.latitude
+        location2.longitude = lngAndLat2.longitude
         result.success(location1.distanceTo(location2).toString())
     }
 }
