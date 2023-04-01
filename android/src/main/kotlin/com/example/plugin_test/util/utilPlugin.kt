@@ -2,7 +2,9 @@ package com.example.plugin_test.util
 
 import android.location.Location
 import androidx.annotation.NonNull
+import com.example.plugin_test.extension.toPluginMethod
 import com.example.plugin_test.model.LngAndLat
+import com.example.plugin_test.model.PluginMethod
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -21,24 +23,24 @@ class utilPlugin:FlutterPlugin, MethodChannel.MethodCallHandler {
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
-        when (call.method) {
-            "calculateLineDistance"->{
+        when (call.method.toPluginMethod()) {
+            is PluginMethod.calculateLineDistance->{
                 val  argument = call.arguments as List<Double>
-                calculateLineDistance( lngAndLat1 = LngAndLat(latitude = argument[1], longitude = argument[0]),
-                   lngAndLat2 = LngAndLat(latitude = argument[3], longitude = argument[2]), result = result)
+                val lngAndLat1 = LngAndLat(latitude = argument[1], longitude = argument[0])
+                val lngAndLat2 = LngAndLat(latitude = argument[3], longitude = argument[2])
+                calculateLineDistance( lngAndLat1 = lngAndLat1, lngAndLat2 = lngAndLat2, result = result)
             }
-            "fuckYou"->{
+            is PluginMethod.fuckYou->{
                 result.success("fuck you")
             }
-            else ->{
+
+            is PluginMethod.unKown ->{
                 result.success("fuck me")
             }
         }
     }
 
     fun calculateLineDistance(lngAndLat1:LngAndLat,lngAndLat2:LngAndLat,@NonNull result: Result){
-
-//    fun calculateLineDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double,@NonNull result: Result){
         val location1 = Location("")
         location1.latitude = lngAndLat1.latitude
         location1.longitude = lngAndLat1.longitude
